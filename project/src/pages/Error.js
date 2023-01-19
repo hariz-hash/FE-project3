@@ -1,10 +1,11 @@
 import React from 'react';
 
-export default function Order()
+export default function Error()
 {
     return (
         <>
-            <h1>Past purchases</h1>
+            <h1> 404 not Found</h1>
+
         </>
     )
 }
