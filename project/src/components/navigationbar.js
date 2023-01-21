@@ -25,19 +25,21 @@ export default function Menu() {
                     </Link>
                  
 
-                
+                    &nbsp;
                     <Link className="text-decoration-none text-white" to="/cart">
                       Cart
                     </Link>
-                
+                    &nbsp;
+
                     <Link className="text-decoration-none text-white" to="/order">
-                      Orders
+                      Order History
                     </Link>
                  
                 </Nav>
                 <Nav className="gap-2">
 
-              
+                &nbsp;
+
                     <Link className="text-decoration-none text-white" to="/">
                       Log Out
                     </Link>
@@ -50,15 +52,20 @@ export default function Menu() {
                     <Link className="text-decoration-none text-white" to="/">
                       Gallery
                     </Link>
+                    &nbsp;
 
                 </Nav>
                 <Nav className="gap-2">
                     <Link className="text-decoration-none text-white" to="/login">
                       Login
                     </Link>
+                    &nbsp;
+
                     <Link className="text-decoration-none text-white" to="/signUp">
                       Sign Up
                     </Link>
+                    &nbsp;
+
                 </Nav>
               </Nav>
             )

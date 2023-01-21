@@ -11,8 +11,12 @@ const API_URL = "https://3030-harizhash-beproject3-l04rucih8ee.ws-us83.gitpod.io
 export default function UserProvider(props) {
     const [redirectTo, setRidrecTo] = useState('')
     const navigateTo = useNavigate();
-
+    const [getCart, setGetCart] = useState() || []
     const userContext = {
+
+        // getAllCart() {
+        //     return getCart;
+        // },
 
         checkIfAuthenticated: () => {
             if (JSON.parse(localStorage.getItem('accessToken')) && JSON.parse(localStorage.getItem('refreshToken'))) {
@@ -30,7 +34,7 @@ export default function UserProvider(props) {
                 localStorage.setItem('accessToken', JSON.stringify(accessToken));
                 localStorage.setItem('refreshToken', JSON.stringify(refreshToken));
                 const testaccess = JSON.parse(localStorage.getItem('accessToken'))
-                console.log("HERERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR" + testaccess)
+                console.log("HERE" + testaccess)
                 if (redirectTo) {
                     navigateTo(redirectTo);
                     setRidrecTo('');
@@ -74,14 +78,57 @@ export default function UserProvider(props) {
                     // dispatch(userUpdateProfileFail())
 
                 })
-                console.log(response)
+            console.log(response)
+
 
             const testaccess = JSON.parse(localStorage.getItem('accessToken'))
             console.log("in add to cart  " + testaccess)
             // const result = response.data;
             alert("Shoe added to cart!");
+        },
+        getCart: async () => {
+            const response = await axios.get(API_URL + '/cart', {
+                headers: { 'Authorization': `Bearer ${JSON.parse(localStorage.getItem('accessToken'))}` }
+            })
+            const getCart = response.data.cartItems;
+            console.log(getCart)
+            // setGetCart(getCart)
+            return getCart;
+        },
+        deleteCartItem: async (variantId) => {
+            const response = await axios.delete(API_URL + `/cart/${variantId}/remove`, {
+                headers: {
+                    Authorization: `Bearer ${JSON.parse(localStorage.getItem('accessToken'))}`
+                }
+            });
+            alert("Shoe has been deleted!");
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            //  if (redirectTo) {
+            //         navigateTo(redirectTo);
+            //         setRidrecTo('/');
+            //         console.log("1")
+            //     }
+            //     else {
+
+            //         navigateTo('/cart')
+            //         console.log("2")
+            //         setRidrecTo('/cart');
 
 
+            //     }
+            return response
+
+        },
+        updateCartItem: async (variantId, quantity)=>{
+            const response = await axios.put(API_URL + `/cart/${variantId}/update`, {
+                quantity: parseInt(quantity)
+            }, {
+                headers: {
+                    Authorization: `Bearer ${JSON.parse(localStorage.getItem('accessToken'))}`
+                }
+            });
+            toast.success("Quantity updated");
+            return response
         },
     };
 
