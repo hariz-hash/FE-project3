@@ -8,50 +8,68 @@ const BASE_URL = "https://3030-harizhash-beproject3-l04rucih8ee.ws-us83.gitpod.i
 
 export default function UserProvider(props) {
 
-    const [shoes, setShoes] = useState([])
+    const [shoeSearch, setShoeSearch] = useState([])
     const [variant, setVariant] = useState([])
+    const [shoeVariant, setShoeVariant] = useState([])
+    const [variantOnly, setvariantOnly] = useState([])
 
 
 
     const shoeContext = {
-        getAllShoe: () => {
-            return shoes;
+        getAllShoeSearched: () => {
+            return shoeSearch;
         },
         getAllVariant:() =>
         {
             return variant;
+        },
+        getShoeVariant:() =>
+        {
+            return shoeVariant;
+        },
+        getVariantOnly: ()=>
+        {
+            return variantOnly;
         },
         getShoeBySearch: async (query) => {
             const response = await axios.get(BASE_URL + '/product/search', {
                 params: query
             })
             console.log("Search data" + response.data)
-            const shoes = response.data.shoes
-            setShoes(shoes)
-            return shoes;
+            const shoeSearch = response.data.shoes
+            setShoeSearch(shoeSearch)
+            return shoeSearch;
         },
-        getSearchOptions: async () => {
-            const response = await axios.get(BASE_URL + '/product/search_options');
-            console.log("Search options " + response.data.options)
-            const searchOptions = response.data.options;
-            return searchOptions;
-        },
+        // getSearchOptions: async () => {
+        //     const response = await axios.get(BASE_URL + '/product/search_options');
+        //     console.log("Search options " + response.data.options)
+        //     const searchOptions = response.data.options;
+        //     return searchOptions;
+        // },
 
-        getShoeById: async (shoeId) => {
-            const response = await axios.get(BASE_URL + '/product/' + shoeId);
-            console.log("ID " + response.data.shoeCall.variants[0].id)
-            // console.log("ID " + response.data.shoeCall.variants[0].id)
-            // need to for loopp this on REACT
-            const shoes = response.data.shoeCall
-            return shoes;
-        },
+        // getShoeById: async (shoeId) => {
+        //     const response = await axios.get(BASE_URL + '/product/' + shoeId);
+        //     console.log("ID " + response.data.shoeCall.description)
+        //     const shoeVariant = response.data.shoeCall
+        //     setShoeVariant(shoeVariant)
+        //     return shoeVariant;
+        // },
          getVariantByShoeId: async (shoeId) =>
          {
              const response = await axios.get(BASE_URL + '/product/' + shoeId +'/shoeDetails');
-             console.log("HERE " + response.data.variant[0].id +" " + response.data.variant[0].cost)
-             const shoes = response.data.variant;
-             setVariant(shoes)
-             return shoes;
+            //  console.log("HERE " + response.data.variant[0].id +" " + response.data.variant[0].cost)
+             const shoeVariant = response.data.variant;
+             console.log(shoeVariant)
+             setVariant(shoeVariant)
+             return shoeVariant;
+         },
+         getVariantByIdOnly: async (variantid) =>
+         {
+            const response = await axios.get(BASE_URL + '/product/' + variantid +'/variants');
+            const variantOnly = response.data.onlyVariant;
+            setvariantOnly(variantOnly)
+            console.log("THIS IS IN THE VARIANTONLY FOR CART TEMP " + variantOnly)
+            return variantOnly;
          }
     }
 

@@ -37,6 +37,7 @@ function App() {
             <Route path='/signUp' element={<SignUp />} />
             <Route path='/logout' element={<Products />} />
             <Route path='/product/:product_id/shoeDetails' element={<ShoesProvider><VariantList/></ShoesProvider>} />
+            <Route path='/cart/:variant_id/add' element={<ShoesProvider><Cart/></ShoesProvider>} />
 
             <Route path='*' element={<Error />} />
           </Routes>

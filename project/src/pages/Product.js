@@ -2,15 +2,14 @@ import React, { useContext, useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import ShoeContext from "../contexts/ShoeContext"
 import Form from 'react-bootstrap/Form';
-import VariantList from '../pages/VariantList';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
-export default function Product() {
+import ProductCard from './ProductCard';
+export default function Product(props) {
     const shoeContext = useContext(ShoeContext)
-    const shoe = shoeContext.getAllShoe() || [];
+    const shoe = shoeContext.getAllShoeSearched() || [];
 
     const [search, setSearch] = useState({});
-    const [searchOptions, setSearchOptions] = useState(false)
 
     const [formFields, setFormFields] = useState({
         model: '',
@@ -65,19 +64,9 @@ export default function Product() {
                         shoe.map((shoe) => {
                             return (
                                     
-                                    <Card className="card" key={shoe.id} >
-                                        <Card.Img className="img-card w-50 h-25" src={shoe.image_url} />
-                                        <Card.Body>
-                                            <Card.Title>{shoe.model} {shoe.shoeType} {shoe.gender.gender} ({shoe.brand.brand})</Card.Title>
-                                            <Card.Text> {shoe.description}</Card.Text> <br />
-                                         
-                                            {/* <Card.Text> {shoe.materials}</Card.Text> <br /> */}
-                                         {/* {console.log("test")} */}
-                                         {/* <Button className="mt-3" }>See more</Button> */}
-                                         <Button className="btn btn-primary mt-3 ml-3" as={Link} to={`/product/${shoe.id}/shoeDetails`}>View Collection</Button>
-
-                                        </Card.Body>
-                                    </Card>
+                                <div key={shoe.id}>
+                                <ProductCard shoe={shoe} />
+                            </div>
                             );
                         })
                     ) : <div>

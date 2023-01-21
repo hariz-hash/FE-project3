@@ -1,42 +1,69 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import UserContext from '../contexts/UserContext';
+import { toast } from 'react-toastify';
 export default function Login() {
+
+    const [errors, setErrors] = useState([]);
+    const userContext = useContext(UserContext);
 
     const [formFields, setFormFields] = useState({
         email: '',
         password: ''
     })
 
-    const updateFormFields =(event) => {
+    const updateFormFields = (event) => {
         setFormFields({
             ...formFields,
             [event.target.name]: event.target.value
         });
     };
 
+    const login = async () => {
+        const result = await userContext.login(formFields);
+        if (!result) {
+            setErrors(['error']);
+        }
+        else {
+            toast.success('Welcome back');
+        }
+    };
+
     return (
         <React.Fragment>
-               <h1>Sign in</h1>
-                <Form.Group>
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control
+            <h1>Sign in</h1>
+            <Form.Group>
+                <Form.Label>Email</Form.Label>
+                <Form.Control
                     type="text"
                     name="email"
                     value={formFields.email}
-                    onChange={updateFormFields}/>
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control
+                    onChange={updateFormFields} />
+            </Form.Group>
+            <Form.Group>
+                <Form.Label>Password</Form.Label>
+                <Form.Control
                     type="password"
                     name="password"
                     value={formFields.password}
                     onChange={updateFormFields}
-                    />
-               
-                </Form.Group>
+                />
+                {errors.includes('error') ? (
+                    <Form.Text className='error'>
+                        Invalid username and/or password
+                    </Form.Text>
+                ) : (
+                    ''
+                )}
+            </Form.Group>
 
+            <div className='d-flex justify-content-center mt-3 mt-md-4'>
+                {/* Login Button */}
+                <Button variant='primary' onClick={login}>
+                    Login
+                </Button>
+            </div>
 
         </React.Fragment>
     )
