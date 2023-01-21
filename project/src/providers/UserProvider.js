@@ -127,7 +127,8 @@ export default function UserProvider(props) {
                     Authorization: `Bearer ${JSON.parse(localStorage.getItem('accessToken'))}`
                 }
             });
-            toast.success("Quantity updated");
+            // toast.success("Quantity updated");
+            console.log(response.data)
             return response
         },
     };
