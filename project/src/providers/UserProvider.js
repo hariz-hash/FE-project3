@@ -119,7 +119,7 @@ export default function UserProvider(props) {
             return response
 
         },
-        updateCartItem: async (variantId, quantity)=>{
+        updateCartItem: async (variantId, quantity) => {
             const response = await axios.put(API_URL + `/cart/${variantId}/update`, {
                 quantity: parseInt(quantity)
             }, {
@@ -130,6 +130,22 @@ export default function UserProvider(props) {
             // toast.success("Quantity updated");
             console.log(response.data)
             return response
+        },
+        checkout: async (getAllCartItems) => {
+            const cartItems = getAllCartItems;
+
+            if (!cartItems || !cartItems.length) {
+                return false
+            }
+
+            const response = await axios.get(API_URL + '/checkout', {
+                headers: {
+                    Authorization: `Bearer ${JSON.parse(localStorage.getItem('accessToken'))}`
+                }
+            });
+
+            console.log("checkout", response.data);
+            return response.data
         },
     };
 

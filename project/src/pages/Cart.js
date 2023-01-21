@@ -3,11 +3,12 @@ import Button from 'react-bootstrap/Button';
 import ShoeContext from "../contexts/ShoeContext"
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
-import { Link, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
 import CartItem from './CartItem';
 export default function Cart(props) {
     const userContext = useContext(UserContext);
+    let navigate = useNavigate();
     // const variantId = props.cartItem.variant_id;
     // const getAllCartItems = userContext.getAllCart() || [];
 
@@ -43,18 +44,22 @@ export default function Cart(props) {
         await userContext.updateCartItem(varid,quantity)
     }
 
-    // const [quantity, setQuantity] = useState(1)
+    async function handleCheckout() {
+        // alert('yes' + varid + "========" + quantity)
+        // const variantid = varid
+        // await userContext.updateCartItem(varid,quantity)
+        const checkout = await userContext.checkout(getAllCartItems);
+        // navigate(checkout.stripe_url)
+        window.location.href = checkout.stripe_url
 
 
-    // const updateFormFields = (event) => {
-    //     setFormFields({
-    //         [event.target.name]: event.target.value
-    //     });setNam
-    // };
+    }
+
 
     return (
         <>
             <div className="tabs">
+            <Button className="btn btn-primary mt-3 ml-3" onClick={handleCheckout}>Checkout</Button>
 
                 <div className="container-fluid">
                     {getAllCartItems ? (
