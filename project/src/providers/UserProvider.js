@@ -62,7 +62,7 @@ export default function UserProvider(props) {
         addToCart: async (variantId) => {
 
             // await userContext.refreshToken();
-            const response = await axios.post(API_URL + `/cart/${variantId}/add`, {
+            const response = await axios.post(API_URL + `/cart/${variantId}/add`, {}, {
                 headers: { 'Authorization': `Bearer ${JSON.parse(localStorage.getItem('accessToken'))}` }
             })
                 .then((response) => {
@@ -77,15 +77,13 @@ export default function UserProvider(props) {
                 console.log(response)
 
             const testaccess = JSON.parse(localStorage.getItem('accessToken'))
-            console.log("in add to cart" + testaccess)
+            console.log("in add to cart  " + testaccess)
             // const result = response.data;
-            // console.log("cart result", result);
-            toast.success("Shoe added to cart!");
+            alert("Shoe added to cart!");
 
 
         },
     };
-
 
     return (
         <UserContext.Provider value={userContext}>

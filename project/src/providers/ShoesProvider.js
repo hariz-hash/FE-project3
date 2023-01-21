@@ -60,7 +60,7 @@ export default function UserProvider(props) {
             //  console.log("HERE " + response.data.variant[0].id +" " + response.data.variant[0].cost)
              const shoeVariant = response.data.variant;
              console.log(shoeVariant)
-             setVariant(shoeVariant)
+             setShoeVariant(shoeVariant)
              return shoeVariant;
          },
          getVariantByIdOnly: async (variantid) =>

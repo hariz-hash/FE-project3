@@ -15,8 +15,8 @@ export default function VariantList(props) {
     // console.log(product_id)
     const shoeContext = useContext(ShoeContext);
     const getShoeVariant = shoeContext.getShoeVariant() || [];
-    const variantByShoeId = shoeContext.getAllShoe() || [];
-    const variantByIdOnly = shoeContext.getVariantOnly() || [];
+    // const variantByShoeId = shoeContext.getAllShoe() || [];
+    // const variantByIdOnly = shoeContext.getVariantOnly() || [];
     const userContext = useContext(UserContext);
 
 console.log({getShoeVariant} )
@@ -34,17 +34,18 @@ console.log({getShoeVariant} )
         })();
     }, [product_id]);
 
-    // // useEffect(() => {
-    // //     (async () => {
-    // //         await shoeContext.getShoeById(product_id);
+//      useEffect(() => {
+//         (async () => {
+//            await shoeContext.getShoeById(product_id);
 
-    // //     })();
-    // // }, [product_id]);
+//         })();
+//  }, [product_id]);
 
-    //   async function addCart(varid) {
-    //     alert('yes' + varid)
-    //         await userContext.addToCart(varid)
-    //   }
+      async function addCart(varid) {
+        // alert('yes' + varid)
+        const variantid = varid
+            await userContext.addToCart(varid)
+      }
  
     return (<>
       
@@ -60,10 +61,10 @@ console.log({getShoeVariant} )
                                     {/* <Card.Img className="img-card w-50 h-25" src={shoe.image_url} /> */}
                                     <Card.Img className="img-card" src={getShoeVariant.image_url} style={{ width: "100px" }} />
                                     {/* { addCart(variant.id)} */}
-                                    <Card.Title style={{ color: "yellow" }}> {getShoeVariant.model},{getShoeVariant.brand.brand}</Card.Title>
+                                    <Card.Title style={{ color: "green" }}> {getShoeVariant.cost} ,   {getShoeVariant.stock} </Card.Title>
                                     {
                                         userContext.checkIfAuthenticated() ? ( //cart/1/add
-                                            <Button className="btn btn-primary mt-3 ml-3" as={Link}  >add cart</Button>
+                                            <Button className="btn btn-primary mt-3 ml-3" as={Link} onClick={() => addCart(getShoeVariant.id)} >add cart</Button>
                                             // <Button className="btn btn-primary mt-3 ml-3" as={Link}>Login to add cart</Button>
 
                                         ) : (

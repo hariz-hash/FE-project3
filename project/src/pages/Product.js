@@ -18,7 +18,6 @@ export default function Product(props) {
         // gender_id: '0',
         // materials: '0'
     })
-
     // useEffect(() => {
     //     (async () => {
     //         const searchOptions = await shoeContext.getSearchOptions();
@@ -41,7 +40,6 @@ export default function Product(props) {
     const searchShoes = () => {
         const query = { ...formFields };
         setSearch(query)
-
     }
 
     return (
