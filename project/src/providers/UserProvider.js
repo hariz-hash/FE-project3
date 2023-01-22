@@ -25,8 +25,11 @@ export default function UserProvider(props) {
             return false;
         },
         login: async (dataInput) => {
-            try {
-                const response = await axios.post(API_URL + '/user/login', dataInput)
+            const response = await axios.post(API_URL + '/user/login', dataInput)
+            if (response.data.accessToken && response.data.refreshToken) {
+
+
+
 
                 const accessToken = response.data.accessToken;
                 const refreshToken = response.data.refreshToken;
@@ -35,6 +38,7 @@ export default function UserProvider(props) {
                 localStorage.setItem('refreshToken', JSON.stringify(refreshToken));
                 const testaccess = JSON.parse(localStorage.getItem('accessToken'))
                 console.log("HERE" + testaccess)
+                console.log("Redirect " + redirectTo)
                 if (redirectTo) {
                     navigateTo(redirectTo);
                     setRidrecTo('');
@@ -42,11 +46,13 @@ export default function UserProvider(props) {
                 else {
                     navigateTo('/')
                 }
-            } catch (e) {
-                console.log(e)
+                return true
+            } else {
+
+                return false;
             }
         },
-        logout: async (option = '') => {
+        logout: async () => {
             try {
                 const response = await axios.post(API_URL + '/user/logout', {
                     refreshToken: JSON.parse(localStorage.getItem('refreshToken'))
@@ -55,10 +61,10 @@ export default function UserProvider(props) {
                 localStorage.removeItem('accessToken');
                 localStorage.removeItem('refreshToken');
 
-                if (option !== 'expire') {
-                    toast.success('Logged out successfully');
-                    navigateTo('/');
-                }
+
+                // toast.success('Logged out successfully');
+                navigateTo('/');
+
             } catch (e) {
                 console.log(e)
             }
@@ -83,8 +89,7 @@ export default function UserProvider(props) {
 
             const testaccess = JSON.parse(localStorage.getItem('accessToken'))
             console.log("in add to cart  " + testaccess)
-            // const result = response.data;
-            alert("Shoe added to cart!");
+
         },
         getCart: async () => {
             const response = await axios.get(API_URL + '/cart', {
@@ -101,21 +106,7 @@ export default function UserProvider(props) {
                     Authorization: `Bearer ${JSON.parse(localStorage.getItem('accessToken'))}`
                 }
             });
-            alert("Shoe has been deleted!");
-            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            //  if (redirectTo) {
-            //         navigateTo(redirectTo);
-            //         setRidrecTo('/');
-            //         console.log("1")
-            //     }
-            //     else {
 
-            //         navigateTo('/cart')
-            //         console.log("2")
-            //         setRidrecTo('/cart');
-
-
-            //     }
             return response
 
         },
@@ -127,7 +118,7 @@ export default function UserProvider(props) {
                     Authorization: `Bearer ${JSON.parse(localStorage.getItem('accessToken'))}`
                 }
             });
-            
+
             return response
         },
         checkout: async (getAllCartItems) => {
@@ -148,11 +139,12 @@ export default function UserProvider(props) {
         },
         register: async (userData) => {
             const response = await axios.post(API_URL + '/user/register', userData);
-            if(response){
-                alert("Account successfully registered. Please login in.");
+            if (response.data.message) {
+                navigateTo('/login')
+                return true
             }
-            else{
-                alert('fao;ed')
+            else {
+                return false
             }
             console.log(response.data)
         },
@@ -166,32 +158,32 @@ export default function UserProvider(props) {
             return orders;
         },
         refreshToken: async () => {
-            try{
+            try {
                 const response = await axios.post(API_URL + '/user/refresh', {
                     refreshToken: JSON.parse(localStorage.getItem('refreshToken'))
                 }, {
                     headers: {
                         Authorization: `Bearer ${JSON.parse(localStorage.getItem('accessToken'))}`
-                        
+
                     }
-    
+
                 });
                 console.log("response", response.data);
                 const accessToken = response.data.accessToken;
                 localStorage.setItem('accessToken', JSON.stringify(accessToken));
                 return true;
             }
-            catch(e){
+            catch (e) {
                 console.log(e);
-                if(JSON.parse(localStorage.getItem('refreshToken'))){
+                if (JSON.parse(localStorage.getItem('refreshToken'))) {
                     await userContext.logout('expire');
                 }
                 navigateTo('/login');
-    
+
                 return false;
             }
-           }
-        
+        }
+
     };
 
     return (

@@ -2,9 +2,23 @@ import React, { useState, useContext } from "react";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import UserContext from '../contexts/UserContext';
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function SignUp() {
 
+    const showToastMessageSucces = (message) => {
+
+        toast.success(message, {
+            position: toast.POSITION.TOP_RIGHT
+        });
+    };
+
+    const showToastMessageWarning = (message) => {
+
+        toast.warning(message, {
+            position: toast.POSITION.TOP_RIGHT
+        });
+    };
     const [errors, setErrors] = useState([]);
     const userContext = useContext(UserContext);
 
@@ -22,7 +36,6 @@ export default function SignUp() {
     };
     const validateFormFields = async () => {
         const errors = [];
-
 
         if (
             formFields.username.length < 4 || formFields.username.length > 200) {
@@ -44,7 +57,7 @@ export default function SignUp() {
         setErrors(errors);
         return errors;
     };
-    
+
     const register = async function () {
         const errors = await validateFormFields();
         if (errors.length) {
@@ -55,13 +68,21 @@ export default function SignUp() {
             email: formFields.email,
             password: formFields.password,
         };
+        const registered =  await userContext.register(userData);
 
-        await userContext.register(userData);
+        if(registered){
+            showToastMessageSucces("Account created. Please log in to proceed!")
+
+        }else{
+            showToastMessageWarning("Email has already been in used")
+        }
     };
 
     return (
         <>
             <Form.Group>
+            <ToastContainer />
+
                 <Form.Label>User</Form.Label>
                 <Form.Control
                     type="text"

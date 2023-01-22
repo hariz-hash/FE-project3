@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import ShoeContext from "../contexts/ShoeContext"
 import UserContext from '../contexts/UserContext';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Card from 'react-bootstrap/Card';
 import { Link, useParams } from 'react-router-dom';
@@ -10,7 +12,12 @@ import { Link, useParams } from 'react-router-dom';
 
 export default function VariantList(props) {
 
-
+    const showToastMessage = () => {
+       
+        toast.success('Item added to cart successfully !', {
+            position: toast.POSITION.TOP_RIGHT
+        });
+    };
     const { product_id } = useParams();
     // console.log(product_id)
     const shoeContext = useContext(ShoeContext);
@@ -42,7 +49,7 @@ console.log({getShoeVariant} )
 //  }, [product_id]);
 
       async function addCart(varid) {
-        // alert('yes' + varid)
+        showToastMessage();
         const variantid = varid
             await userContext.addToCart(varid)
       }
@@ -52,6 +59,7 @@ console.log({getShoeVariant} )
        <div className="tabs">
       
             <div className="container-fluid">
+            <ToastContainer />
             {getShoeVariant.length ? (
                     getShoeVariant.map((getShoeVariant) => {
                         return (
@@ -64,8 +72,10 @@ console.log({getShoeVariant} )
                                     <Card.Title style={{ color: "green" }}> {getShoeVariant.cost} ,   {getShoeVariant.stock} </Card.Title>
                                     {
                                         userContext.checkIfAuthenticated() ? ( //cart/1/add
+                                        <div>
                                             <Button className="btn btn-primary mt-3 ml-3" as={Link} onClick={() => addCart(getShoeVariant.id)} >add cart</Button>
-                                            // <Button className="btn btn-primary mt-3 ml-3" as={Link}>Login to add cart</Button>
+                                            
+                                            </div>
 
                                         ) : (
                                             <Button className="btn btn-primary mt-3 ml-3" as={Link} >Login to add cart</Button>

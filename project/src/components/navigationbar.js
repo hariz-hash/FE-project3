@@ -5,14 +5,30 @@ import { Link } from 'react-router-dom';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import UserContext from '../contexts/UserContext';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Menu() {
   // const userContext = userContext(UserContext);
   const userContext = useContext(UserContext);
   // console.log(typeof userContext)
+
+  const showToastMessageLogOut = () => {
+    toast.success('Log out !', {
+        position: toast.POSITION.TOP_RIGHT
+    });
+};
+
+const handleLogout = () =>
+{
+  showToastMessageLogOut()
+  userContext.logout()
+}
+
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" className="p-3">
       <Container>
+      <ToastContainer />
         <Navbar.Brand href="#home">DASH</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
@@ -40,7 +56,7 @@ export default function Menu() {
 
                
 
-                    <Link className="text-decoration-none text-white" onClick={userContext.logout}>
+                    <Link className="text-decoration-none text-white" onClick={handleLogout}>
                       Log Out
                     </Link>
                 </Nav>

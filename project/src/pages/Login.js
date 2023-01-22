@@ -2,10 +2,24 @@ import React, { useState, useContext } from "react";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import UserContext from '../contexts/UserContext';
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function Login() {
+    const showToastMessageFail = (message) => {
 
-    const [errors, setErrors] = useState([]);
+        toast.error(message, {
+            position: toast.POSITION.TOP_RIGHT
+        });
+    };
+
+    const showToastMessageSucces = (message) => {
+
+        toast.success(message, {
+            position: toast.POSITION.TOP_RIGHT
+        });
+    };
+   
+
     const userContext = useContext(UserContext);
 
     const [formFields, setFormFields] = useState({
@@ -23,16 +37,17 @@ export default function Login() {
     const login = async () => {
         if(formFields.email ==='' || formFields.password === '')
         {
-            alert("Please input valid credentials");
+            
+            showToastMessageFail("Please input valid credentials")
 
         }else{
             const result = await userContext.login(formFields);
-            if (!result) {
-                setErrors(['error']);
+            if (result==false) {
+                showToastMessageFail("Login Fail")
+            } else {
+                showToastMessageSucces("Welcome!")
             }
-            else {
-                alert('Welcome back');
-            }
+            
         }
      
     };
@@ -64,6 +79,7 @@ export default function Login() {
     return (
         <React.Fragment>
             <h1>Sign in</h1>
+            <ToastContainer />
             <Form.Group>
                 <Form.Label>Email</Form.Label>
                 <Form.Control
@@ -80,13 +96,7 @@ export default function Login() {
                     value={formFields.password}
                     onChange={updateFormFields}
                 />
-                {errors.includes('error') ? (
-                    <Form.Text className='error'>
-                        Invalid username and/or password
-                    </Form.Text>
-                ) : (
-                    ''
-                )}
+             
             </Form.Group>
 
             <div className='d-flex justify-content-center mt-3 mt-md-4'>

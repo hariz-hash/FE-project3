@@ -6,11 +6,21 @@ import Card from 'react-bootstrap/Card';
 import { useNavigate, useParams } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
 import CartItem from './CartItem';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function Cart(props) {
     const userContext = useContext(UserContext);
     let navigate = useNavigate();
     // const variantId = props.cartItem.variant_id;
     // const getAllCartItems = userContext.getAllCart() || [];
+
+
+    const showToastMessageSuccess = (message) => {
+
+        toast.success(message, {
+            position: toast.POSITION.TOP_RIGHT
+        });
+    };
 
     const { variant_id } = useParams();
     const [update, setUpdate] = useState(false);
@@ -33,24 +43,25 @@ export default function Cart(props) {
     async function deletItem(varid) {
         // alert('yes' + varid)
         // const variantid = varid
+        showToastMessageSuccess("Item Removed from cart!")
         await userContext.deleteCartItem(varid)
 
         refresh ? setRefresh(false) : setRefresh(true)
     }
 
-    async function updateCartItem(varid, quantity) {
-        // alert('yes' + varid + "========" + quantity)
-        const variantid = varid
-        let data = await userContext.updateCartItem(varid, quantity)
+    // async function updateCartItem(varid, quantity) {
+    //     // alert('yes' + varid + "========" + quantity)
+    //     const variantid = varid
+    //     let data = await userContext.updateCartItem(varid, quantity)
 
-        if (data.state = true) {
-            alert("Quantity Updated")
-        }
-        else if (data.state = false) {
-            alert("Item reach it's limit Updated")
+    //     if (data.state = true) {
+    //         alert("Quantity Updated")
+    //     }
+    //     else if (data.state = false) {
+    //         alert("Item reach it's limit Updated")
 
-        }
-    }
+    //     }
+    // }
 
     async function handleCheckout() {
         // alert('yes' + varid + "========" + quantity)
@@ -68,6 +79,7 @@ export default function Cart(props) {
         <>
             <div className="tabs">
 
+            <ToastContainer />
 
                 <div className="container-fluid">
                     {getAllCartItems?.length > 0 ? (

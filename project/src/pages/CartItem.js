@@ -5,6 +5,8 @@ import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 import { Link, useParams } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -12,33 +14,64 @@ export default function CartItem(props) {
     const userContext = useContext(UserContext);
 
     const [quantity, setQuantity] = useState(1)
-    const [popup, setPopUp] = useState(false)
     
+    const [errors, setErrors] = useState([]);
 
-    const { getAllCartItems, deletItem, refresh, setRefresh  } = props;
+
+    const { getAllCartItems, deletItem, refresh, setRefresh } = props;
     console.log(getAllCartItems)
+
+    const showToastMessageSuccess = (message) => {
+
+        toast.success(message, {
+            position: toast.POSITION.TOP_RIGHT
+        });
+    };
+
+    const showToastMessageFail = (message) => {
+
+        toast.warning(message, {
+            position: toast.POSITION.TOP_RIGHT
+        });
+    };
+
+    // const validateFormFields = async () => {
+    //     const errors = [];
+
+    //     if (formFields.password.length < 4 || formFields.password.length > 200) {
+    //         errors.push('password');
+    //     }
+
+    //     setErrors(errors);
+    //     return errors;
+    // };
+
     async function updateCartItem(varid, quantity) {
         // alert('yes' + varid + "========" + quantity)
-       
-        let response= await userContext.updateCartItem(varid, quantity)
+
+        let response = await userContext.updateCartItem(varid, quantity)
         console.log(response.data.state)
         if (response.data.state == true) {
-            alert("Quantity Updated")
+
+            showToastMessageSuccess("Quantity updated")
             refresh ? setRefresh(false) : setRefresh(true)
-            setPopUp(true)
+            
         }
         else if (response.data.state == false) {
-            alert("Product limit reach")
+            showToastMessageFail("Product limit reached")
             refresh ? setRefresh(false) : setRefresh(true)
-            setPopUp(false)
+            
 
         }
         // 
-        
+
     }
+
+
+
     return (<>
 
-        
+        <ToastContainer />
         <Card className="card" key={getAllCartItems.id} >
             <Card.Body>
                 <Card.Img className="img-card" src={getAllCartItems.variant?.image_url} style={{ width: "100px" }} />
@@ -51,7 +84,7 @@ export default function CartItem(props) {
                 <Form.Label>Quantity</Form.Label>
                 <Form.Control
                     className="form-control form-control-sm"
-                    type="text"
+                    type="number"
                     name="quantity"
                     value={quantity}
                     onChange={(e) => setQuantity(e.target.value)} />
