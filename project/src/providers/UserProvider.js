@@ -157,6 +157,42 @@ export default function UserProvider(props) {
             }
             console.log(response.data)
         },
+        orders: async () => {
+            const response = await axios.get(API_URL + '/order', {
+                headers: {
+                    Authorization: `Bearer ${JSON.parse(localStorage.getItem('accessToken'))}`
+                }
+            });
+            const orders = response.data.orders;
+            return orders;
+        },
+        refreshToken: async () => {
+            try{
+                const response = await axios.post(API_URL + '/user/refresh', {
+                    refreshToken: JSON.parse(localStorage.getItem('refreshToken'))
+                }, {
+                    headers: {
+                        Authorization: `Bearer ${JSON.parse(localStorage.getItem('accessToken'))}`
+                        
+                    }
+    
+                });
+                console.log("response", response.data);
+                const accessToken = response.data.accessToken;
+                localStorage.setItem('accessToken', JSON.stringify(accessToken));
+                return true;
+            }
+            catch(e){
+                console.log(e);
+                if(JSON.parse(localStorage.getItem('refreshToken'))){
+                    await userContext.logout('expire');
+                }
+                navigateTo('/login');
+    
+                return false;
+            }
+           }
+        
     };
 
     return (
