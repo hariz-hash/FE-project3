@@ -40,7 +40,7 @@ export default function Menu() {
 
                 &nbsp;
 
-                    <Link className="text-decoration-none text-white" to="/">
+                    <Link className="text-decoration-none text-white" onClick={userContext.logout}>
                       Log Out
                     </Link>
                 </Nav>

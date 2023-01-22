@@ -147,6 +147,16 @@ export default function UserProvider(props) {
             console.log("checkout", response.data);
             return response.data
         },
+        register: async (userData) => {
+            const response = await axios.post(API_URL + '/user/register', userData);
+            if(response){
+                alert("Account successfully registered. Please login in.");
+            }
+            else{
+                alert('fao;ed')
+            }
+            console.log(response.data)
+        },
     };
 
     return (

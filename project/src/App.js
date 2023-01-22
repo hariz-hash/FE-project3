@@ -16,6 +16,8 @@ import Logout from './pages/Logout';
 import VariantList from './pages/VariantList';
 import UserProvider from './providers/UserProvider';
 import ShoesProvider from './providers/ShoesProvider';
+import CheckoutSuccess from './pages/CheckoutSuccess';
+import CheckoutError from './pages/CheckoutError';
 
 function App() {
   return ( // userLogIn? ( SHOW : cart Link, order Link, logout Link) : (SHOW : Login link, Register Link)
@@ -37,7 +39,8 @@ function App() {
             <Route path='/signUp' element={<SignUp />} />
             <Route path='/logout' element={<Products />} />
             <Route path='/product/:product_id/shoeDetails' element={<ShoesProvider><VariantList/></ShoesProvider>} />
-            <Route path='/cart/:variant_id/add' element={<ShoesProvider><Cart/></ShoesProvider>} />
+            <Route path='/checkout/success' element={<UserProvider><CheckoutSuccess/></UserProvider>} />
+            <Route path='/checkout/error' element={<UserProvider><CheckoutError/></UserProvider>} />
 
             <Route path='*' element={<Error />} />
           </Routes>
