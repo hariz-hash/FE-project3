@@ -38,7 +38,7 @@ export default function Product(props) {
             ...formFields,
             [event.target.name]: event.target.value
         });
-        
+
     };
 
     const searchShoes = () => {
@@ -47,65 +47,41 @@ export default function Product(props) {
         setSearch(query)
     }
 
-   
+
     return (
         <>
             <h1>Product</h1>
-            <Form.Group>
+            <div className="container-fluid">
+
+            <Form.Group className='m-4'>
                 <Form.Label>Name</Form.Label>
                 <Form.Control type="text" placeholder="Search by name" name="model" value={formFields.model} onChange={updateFormFields}>
                 </Form.Control>
             </Form.Group>
-            <Form.Group>
+            <Form.Group  className='m-4'>
                 <Form.Label>Shoe Type</Form.Label>
                 <Form.Control type="text" placeholder="Search by description" name="shoeType" value={formFields.shoeType} onChange={updateFormFields}>
                 </Form.Control>
             </Form.Group>
-            <Form.Group>
+            <Form.Group  className='m-4'>
                 <Form.Label>Description</Form.Label>
                 <Form.Control type="text" placeholder="Search by description" name="description" value={formFields.description} onChange={updateFormFields}>
                 </Form.Control>
             </Form.Group>
-            <Form.Group>
-                {/* <select id="myList" onchange={updateFormFields} >
-                    <option value='1'> Male </option>
-                    <option value='2'> female </option>
-                </select>  */}
-                {/* <Form>
-                    {['radio'].map((type) => (
-                        <div key={`inline-${type}`} className="mb-3">
-                            <Form.Check
-                                inline
-                                label="Male"
-                                name="group1"
-                                type={type}
-                                value="Male"
-                                id={`inline-${type}-1`}
-                                onChange={updateFormFields}
-                            />
-                            <Form.Check
-                                inline
-                                label="Female"
-                                name="group1"
-                                value="Female"
-                                type={type}
-                                id={`inline-${type}-2`}
-                            />
-                           
-                        </div>
-                    ))}
-                </Form> */}
-                <div>
+            <Form.Group  className='m-4'>
+
+                <div class="d-flex justify-content-sm-evenly">
                     <input type="radio" value="1" name="gender_id" onChange={updateFormFields} /> Male
                     <input type="radio" value="2" name="gender_id" onChange={updateFormFields} /> Female
                     <input type="radio" value="0" name="gender_id" onChange={updateFormFields} /> Both
                 </div>
+                <Button className="btn btn-primary mt-3 ml-3" onClick={searchShoes}>Search</Button>
 
                 {/* <Dropdown options={options} onChange={this._onSelect} value={defaultOption} placeholder="Select an option" />; */}
             </Form.Group>
 
+            </div>
 
-            <Button className="btn btn-primary mt-3 ml-3" onClick={searchShoes}>Search</Button>
             <div className="tabs">
                 <div className="container-fluid">
                     {shoe.length ? (

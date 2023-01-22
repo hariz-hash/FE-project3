@@ -15,74 +15,60 @@ export default function Menu() {
 
   const showToastMessageLogOut = () => {
     toast.success('Log out !', {
-        position: toast.POSITION.TOP_RIGHT
+      position: toast.POSITION.TOP_RIGHT
     });
-};
+  };
 
-const handleLogout = () =>
-{
-  showToastMessageLogOut()
-  userContext.logout()
-}
+  const handleLogout = () => {
+    showToastMessageLogOut()
+    userContext.logout()
+  }
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" className="p-3">
       <Container>
-      <ToastContainer />
-        <Navbar.Brand href="#home">DASH</Navbar.Brand>
+        <ToastContainer />
+        <Navbar.Brand href="/">DASHoes</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           {
             userContext.checkIfAuthenticated() ? (
               <Nav>
-                <Nav className="me-auto">
-                    <Link className="text-decoration-none text-white" to="/">
-                      Gallery
-                    </Link>
-                 
+                <Nav className="me-auto p-2">
+                  <Link className="text-decoration-none text-white p-2 m-2" to="/">
+                    Gallery
+                  </Link>
+                  <Link className="text-decoration-none text-white p-2 m-2" to="/cart">
+                    Cart
+                  </Link>
 
-                    
-                    <Link className="text-decoration-none text-white" to="/cart">
-                      Cart
-                    </Link>
-                  
+                  <Link className="text-decoration-none text-white p-2 m-2" to="/order">
+                    Order History
+                  </Link>
 
-                    <Link className="text-decoration-none text-white" to="/order">
-                      Order History
-                    </Link>
-                 
-                </Nav>
-                <Nav className="gap-2">
-
-               
-
-                    <Link className="text-decoration-none text-white" onClick={handleLogout}>
-                      Log Out
-                    </Link>
+                  <Link className="text-decoration-none text-white p-2 m-2" onClick={handleLogout}>
+                    Log Out
+                  </Link>
                 </Nav>
               </Nav>
 
             ) : (
               <Nav>
-                <Nav className="me-auto">
-                    <Link className="text-decoration-none text-white" to="/">
-                      Gallery
-                    </Link>
-                    &nbsp;
-
+                <Nav className="me-auto p-2">
+                  <Link className="text-decoration-none text-white p-2 m-2" to="/">
+                    Gallery
+                  </Link>
+                  <Link className="text-decoration-none text-white p-2 m-2" to="/login">
+                    Login
+                  </Link>
+                
+                  <Link className="text-decoration-none text-white p-2 m-2" to="/signUp">
+                    Sign Up
+                  </Link>
                 </Nav>
-                <Nav className="gap-2">
-                    <Link className="text-decoration-none text-white" to="/login">
-                      Login
-                    </Link>
-                    &nbsp;
-
-                    <Link className="text-decoration-none text-white" to="/signUp">
-                      Sign Up
-                    </Link>
-                    &nbsp;
-
-                </Nav>
+             
+              
+            
               </Nav>
             )
           }
