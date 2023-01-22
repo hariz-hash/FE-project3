@@ -13,8 +13,6 @@ export default function UserProvider(props) {
     const [shoeVariant, setShoeVariant] = useState([])
     const [variantOnly, setvariantOnly] = useState([])
 
-
-
     const shoeContext = {
         getAllShoeSearched: () => {
             return shoeSearch;

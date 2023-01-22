@@ -44,6 +44,7 @@ export default function SignUp() {
         setErrors(errors);
         return errors;
     };
+    
     const register = async function () {
         const errors = await validateFormFields();
         if (errors.length) {

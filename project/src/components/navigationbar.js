@@ -25,11 +25,11 @@ export default function Menu() {
                     </Link>
                  
 
-                    &nbsp;
+                    
                     <Link className="text-decoration-none text-white" to="/cart">
                       Cart
                     </Link>
-                    &nbsp;
+                  
 
                     <Link className="text-decoration-none text-white" to="/order">
                       Order History
@@ -38,7 +38,7 @@ export default function Menu() {
                 </Nav>
                 <Nav className="gap-2">
 
-                &nbsp;
+               
 
                     <Link className="text-decoration-none text-white" onClick={userContext.logout}>
                       Log Out

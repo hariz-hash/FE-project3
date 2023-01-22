@@ -21,14 +21,45 @@ export default function Login() {
     };
 
     const login = async () => {
-        const result = await userContext.login(formFields);
-        if (!result) {
-            setErrors(['error']);
+        if(formFields.email ==='' || formFields.password === '')
+        {
+            alert("Please input valid credentials");
+
+        }else{
+            const result = await userContext.login(formFields);
+            if (!result) {
+                setErrors(['error']);
+            }
+            else {
+                alert('Welcome back');
+            }
         }
-        else {
-            toast.success('Welcome back');
-        }
+     
     };
+   
+
+    // const validateFormFields = async () => {
+    //     const errors = [];
+
+
+    //     if (!formFields.email.includes("@") || !formFields.email.includes(".")) {
+    //         errors.push('email');
+    //     }
+
+    //     if (formFields.password.length < 4 || formFields.password.length > 200) {
+    //         errors.push('password');
+    //     }
+
+    //     if (formFields.confirm_password !== formFields.password) {
+    //         errors.push('confirm_password');
+    //     }
+
+    //     setErrors(errors);
+    //     return errors;
+    // };
+    
+
+
 
     return (
         <React.Fragment>

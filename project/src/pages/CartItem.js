@@ -12,17 +12,33 @@ export default function CartItem(props) {
     const userContext = useContext(UserContext);
 
     const [quantity, setQuantity] = useState(1)
+    const [popup, setPopUp] = useState(false)
+    
 
     const { getAllCartItems, deletItem, refresh, setRefresh  } = props;
     console.log(getAllCartItems)
     async function updateCartItem(varid, quantity) {
-        alert('yes' + varid + "========" + quantity)
-        const variantid = varid
-        await userContext.updateCartItem(varid, quantity)
-        refresh ? setRefresh(false) : setRefresh(true)
+        // alert('yes' + varid + "========" + quantity)
+       
+        let response= await userContext.updateCartItem(varid, quantity)
+        console.log(response.data.state)
+        if (response.data.state == true) {
+            alert("Quantity Updated")
+            refresh ? setRefresh(false) : setRefresh(true)
+            setPopUp(true)
+        }
+        else if (response.data.state == false) {
+            alert("Product limit reach")
+            refresh ? setRefresh(false) : setRefresh(true)
+            setPopUp(false)
+
+        }
+        // 
+        
     }
     return (<>
 
+        
         <Card className="card" key={getAllCartItems.id} >
             <Card.Body>
                 <Card.Img className="img-card" src={getAllCartItems.variant?.image_url} style={{ width: "100px" }} />

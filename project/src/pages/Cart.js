@@ -39,9 +39,17 @@ export default function Cart(props) {
     }
 
     async function updateCartItem(varid, quantity) {
-        alert('yes' + varid + "========" + quantity)
+        // alert('yes' + varid + "========" + quantity)
         const variantid = varid
-        await userContext.updateCartItem(varid,quantity)
+        let data = await userContext.updateCartItem(varid, quantity)
+
+        if (data.state = true) {
+            alert("Quantity Updated")
+        }
+        else if (data.state = false) {
+            alert("Item reach it's limit Updated")
+
+        }
     }
 
     async function handleCheckout() {
@@ -59,43 +67,23 @@ export default function Cart(props) {
     return (
         <>
             <div className="tabs">
-            <Button className="btn btn-primary mt-3 ml-3" onClick={handleCheckout}>Checkout</Button>
+
 
                 <div className="container-fluid">
-                    {getAllCartItems ? (
-                        getAllCartItems.map((getAllCartItems) => {
-                            return (
+                    {getAllCartItems?.length > 0 ? (
+                        <div> <Button className="btn btn-primary mt-3 ml-3" onClick={handleCheckout}>Checkout</Button>
 
-                                
-                                // <Card className="card" key={getAllCartItems.id} >
-                                //     <Card.Body>
-                                //         <Card.Img className="img-card" src={getAllCartItems.variant?.image_url} style={{ width: "100px" }} />
-                                //         <Card.Title style={{ color: "green" }}> {getAllCartItems.variant?.shoe?.model} &nbsp; {getAllCartItems.variant?.shoe?.shoe_type} : {getAllCartItems.variant?.size?.size}, <br /> price {getAllCartItems.variant?.cost
-                                //         }  </Card.Title>
-                                //         {
-                                //             <Card.Title style={{ color: "green" }}> Quantity: {getAllCartItems.quantity}
-                                //             </Card.Title>
-                                //         }
-                                //         <Form.Label>Quantity</Form.Label>
-                                //         <Form.Control
-                                //             className="form-control form-control-sm"
-                                //             type="text"
-                                //             name="quantity"
-                                //             value={quantity}
-                                //             onChange={(e) => setQuantity(e.target.value)} />
+                            {getAllCartItems.map((getAllCartItems) => {
+                                return (
 
+                                    <CartItem getAllCartItems={getAllCartItems} deletItem={deletItem} refresh={refresh} setRefresh={setRefresh} />
 
-                                //         <Button className="btn btn-primary mt-3 ml-3" onClick={() => updateCartItem(getAllCartItems.variant_id, quantity)}>Update</Button>
-                                //         <br />
-                                //         <Button className="btn btn-danger mt-3 ml-3" onClick={() => deletItem(getAllCartItems.variant_id)}>Remove</Button>
+                                );
+                            })
+                            }
 
+                        </div>
 
-                                //     </Card.Body>
-                                // </Card>
-                                // <CartItem />
-                            <CartItem getAllCartItems={getAllCartItems} deletItem={deletItem} refresh={refresh} setRefresh={setRefresh}/>
-                            );
-                        })
                     ) : <div>
                         <h5>No shoes found</h5>
                     </div>}
