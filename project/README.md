@@ -87,12 +87,13 @@ Quicksand : Takes up the majority of the text due it's spacious pattern so as to
 |Cart| Customer who are logged-in can add, update remove items to and from cart|
 |Cart Checkout| Customer will then proceed to stripe after checkout when press on checkout button|
 |View History Order| Customer can view their past purchases in order history
-|
+
 
 ##  Limitations and Future Implementations
 | Limitations | Future Implementations |
 | -------- | ----------- |
 |Log in back end for staff and admin | As of right now, anyone who is a staff or admin can create an account. There is no role separation. Future implementations is to allow role separations when creating an account for the backend|
+|Implement blacklist token| To implement blacklist token in the future
 
 ##  Technologies Used
 ###  Backend
