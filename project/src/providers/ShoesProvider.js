@@ -3,7 +3,7 @@ import axios from 'axios';
 import ShoeContext from '../contexts/ShoeContext';
 
 
-const BASE_URL = "https://3030-harizhash-beproject3-l04rucih8ee.ws-us83.gitpod.io/api";
+const BASE_URL = "https://dashoes-project.onrender.com/api";
 
 
 export default function UserProvider(props) {
