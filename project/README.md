@@ -27,7 +27,7 @@ Create an amazing website application to sell sport shoe brands that consists of
 
 Entity-Relationship Diagram (ERD) 
 
-image of logical diagram
+![Logical Schema](readme/DASHOES.PNG)
 
 Logical Schema
 
