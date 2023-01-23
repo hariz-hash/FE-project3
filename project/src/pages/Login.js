@@ -78,9 +78,13 @@ export default function Login() {
 
     return (
         <React.Fragment>
-            <h1>Sign in</h1>
+             <div style={{ width: "100", display: "flex", justifyContent: "center", marginTop: "20px", marginBottom: "20px" }}>
+                    <h1> Log In </h1>
+                </div>
             <ToastContainer />
-            <Form.Group>
+            <div className="container-fluid background">
+
+            <Form.Group className='m-4'>
                 <Form.Label>Email</Form.Label>
                 <Form.Control
                     type="text"
@@ -88,7 +92,7 @@ export default function Login() {
                     value={formFields.email}
                     onChange={updateFormFields} />
             </Form.Group>
-            <Form.Group>
+            <Form.Group className='m-4'>
                 <Form.Label>Password</Form.Label>
                 <Form.Control
                     type="password"
@@ -106,6 +110,9 @@ export default function Login() {
                 </Button>
             </div>
 
+
+            </div>
+           
         </React.Fragment>
     )
 }

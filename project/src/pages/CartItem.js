@@ -14,7 +14,7 @@ export default function CartItem(props) {
     const userContext = useContext(UserContext);
 
     const [quantity, setQuantity] = useState(1)
-    
+
     const [errors, setErrors] = useState([]);
 
 
@@ -46,6 +46,8 @@ export default function CartItem(props) {
     //     return errors;
     // };
 
+    const [updatedQuantity, setUpdatedQuantity] = useState(1)
+
     async function updateCartItem(varid, quantity) {
         // alert('yes' + varid + "========" + quantity)
 
@@ -53,14 +55,15 @@ export default function CartItem(props) {
         console.log(response.data.state)
         if (response.data.state == true) {
 
+            setUpdatedQuantity(quantity)
             showToastMessageSuccess("Quantity updated")
             refresh ? setRefresh(false) : setRefresh(true)
-            
+
         }
         else if (response.data.state == false) {
             showToastMessageFail("Product limit reached")
             refresh ? setRefresh(false) : setRefresh(true)
-            
+
 
         }
         // 
@@ -72,16 +75,25 @@ export default function CartItem(props) {
     return (<>
 
         <ToastContainer />
+
+
         <Card className="card" key={getAllCartItems.id} >
-            <Card.Body>
-                <Card.Img className="img-card" src={getAllCartItems.variant?.image_url} style={{ width: "100px" }} />
-                <Card.Title style={{ color: "green" }}> {getAllCartItems.variant?.shoe?.model} &nbsp; {getAllCartItems.variant?.shoe?.shoe_type} : {getAllCartItems.variant?.size?.size}, <br /> price {getAllCartItems.variant?.cost
-                }  </Card.Title>
-                {
-                    <Card.Title style={{ color: "green" }}> Quantity: {getAllCartItems.quantity}
-                    </Card.Title>
-                }
-                <Form.Label>Quantity</Form.Label>
+           
+
+                <Card.Img className="img-card mx-5 mx-md-3 my-5" src={getAllCartItems.variant?.image_url} style={{
+                    float: "left",
+                    width: "180px",//phone 250px
+                    height: "150px",
+                    objectFit: "cover"
+                }} />
+
+                {/* <Card.Title style={{ color: "green" }}> {getAllCartItems.variant?.shoe?.model} &nbsp; {getAllCartItems.variant?.shoe?.shoe_type} : {getAllCartItems.variant?.size?.size}, <br /> price {getAllCartItems.variant?.cost
+                }  </Card.Title> */}
+                
+                <Card.Title style={{ color: "green" }}> Quantity: {getAllCartItems.quantity} , {getAllCartItems.variant?.shoe?.model}, {getAllCartItems.variant?.color?.color}, $ {(getAllCartItems.variant?.cost)/100 * getAllCartItems.quantity}
+                </Card.Title>
+                <Card.Body>
+                <Form.Label>Edit Quantity:</Form.Label>
                 <Form.Control
                     className="form-control form-control-sm"
                     type="number"
@@ -89,10 +101,11 @@ export default function CartItem(props) {
                     value={quantity}
                     onChange={(e) => setQuantity(e.target.value)} />
 
+                <div style={{ width: "100", display: "flex", justifyContent: "space-between", marginTop: "20px" }}>
+                    <Button className="btn btn-primary" onClick={() => updateCartItem(getAllCartItems.variant_id, quantity)}>Update</Button>
+                    <Button className="btn btn-danger " style={{ backgroundColor: "red" }} onClick={() => deletItem(getAllCartItems.variant_id)}>Remove</Button>
+                </div>
 
-                <Button className="btn btn-primary mt-3 ml-3" onClick={() => updateCartItem(getAllCartItems.variant_id, quantity)}>Update</Button>
-                <br />
-                <Button className="btn btn-danger mt-3 ml-3" onClick={() => deletItem(getAllCartItems.variant_id)}>Remove</Button>
 
 
             </Card.Body>

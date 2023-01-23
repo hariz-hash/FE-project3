@@ -27,7 +27,9 @@ export default function Order() {
 
     return (
         <>
-            <h1 className='m-3'> Order History</h1>
+            <div style={{ width: "100", display: "flex", justifyContent: "center", marginTop: "20px", marginBottom: "20px" }}>
+                <h1> Order History</h1>
+            </div>            
             <Table striped bordered hover className='m-3'>
                 <thead>
                     <tr>
@@ -50,9 +52,9 @@ export default function Order() {
                                 <td>{orderHistory.payment_type}</td>
                                 <td>{orderHistory.shipping_address_line1} <br /> {orderHistory.shipping_address_line2} <br /> {orderHistory.shipping_postal_code}</td>
                                 <td>{new Date(orderHistory.order_date.slice(0, -1)).toDateString()}</td>
-                                 <td>{new Date(orderHistory.delivery_date.slice(0, -1)).toDateString()}</td>
+                                <td>{new Date(orderHistory.delivery_date.slice(0, -1)).toDateString()}</td>
                                 <td>{orderHistory.status.order_status}</td>
-                                <td><a href={orderHistory.receipt_url} target="_blank" className="login-button">Receipt</a></td> 
+                                <td><a href={orderHistory.receipt_url} target="_blank" className="login-button">Receipt</a></td>
                             </tr>
                         )
                     }) : ''}

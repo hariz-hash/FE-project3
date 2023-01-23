@@ -80,7 +80,7 @@ export default function UserProvider(props) {
 
                 })
                 .catch((error) => {
-                    alert('error', error.response)
+                    // alert('error', error.response)
                     // dispatch(userUpdateProfileFail())
 
                 })

@@ -18,6 +18,7 @@ import UserProvider from './providers/UserProvider';
 import ShoesProvider from './providers/ShoesProvider';
 import CheckoutSuccess from './pages/CheckoutSuccess';
 import CheckoutError from './pages/CheckoutError';
+import './App.css';
 
 function App() {
   return ( // userLogIn? ( SHOW : cart Link, order Link, logout Link) : (SHOW : Login link, Register Link)

@@ -77,33 +77,46 @@ export default function Cart(props) {
 
     return (
         <>
-            <div className="tabs">
+
 
             <ToastContainer />
 
-                <div className="container-fluid">
-                    {getAllCartItems?.length > 0 ? (
-                        <div> <Button className="btn btn-primary mt-3 ml-3" onClick={handleCheckout}>Checkout</Button>
-
-                            {getAllCartItems.map((getAllCartItems) => {
-                                return (
-
-                                    <CartItem getAllCartItems={getAllCartItems} deletItem={deletItem} refresh={refresh} setRefresh={setRefresh} />
-
-                                );
-                            })
-                            }
-
-                        </div>
-
-                    ) : <div>
-                        <h5>No shoes found</h5>
-                    </div>}
-
-                    {/* NO SHOE FOUND PROMPT */}
+            <div className="container-fluid">
+                <div style={{ width: "100", display: "flex", justifyContent: "center", marginTop: "20px", marginBottom: "20px" }}>
+                    <h1> Your Cart</h1>
                 </div>
 
+
+                {getAllCartItems?.length > 0 ? (
+                    <div>
+                        <div class="row row-cols-md-3">
+
+                            {
+                                getAllCartItems.map((getAllCartItems) => {
+                                    return (
+                                        <div class="col gy-3">
+
+                                            <CartItem getAllCartItems={getAllCartItems} deletItem={deletItem} refresh={refresh} setRefresh={setRefresh} />
+                                        </div>
+
+                                    );
+                                })
+                            }
+                        </div>
+                        < div style={{ width: "100", display: "flex", justifyContent: "center", marginTop: "20px", marginBottom: "20px" }}>
+                            <Button className="btn btn-primary" onClick={handleCheckout}>Checkout</Button>
+                        </div>
+                    </div>
+
+                ) : <div>
+                    <div style={{ width: "100", display: "flex", justifyContent: "center", marginTop: "20px", marginBottom: "20px" }}>
+                        <h5>No shoes found</h5>
+                    </div>
+                </div>}
+
+                {/* NO SHOE FOUND PROMPT */}
             </div>
+
 
         </>
     )

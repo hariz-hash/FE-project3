@@ -12,22 +12,23 @@ export default function UserProvider(props) {
     const [variant, setVariant] = useState([])
     const [shoeVariant, setShoeVariant] = useState([])
     const [variantOnly, setvariantOnly] = useState([])
+    const [shoeId, setShoeId] = useState([])
 
     const shoeContext = {
         getAllShoeSearched: () => {
             return shoeSearch;
         },
-        getAllVariant:() =>
-        {
+        getAllVariant: () => {
             return variant;
         },
-        getShoeVariant:() =>
-        {
+        getShoeVariant: () => {
             return shoeVariant;
         },
-        getVariantOnly: ()=>
-        {
+        getVariantOnly: () => {
             return variantOnly;
+        },
+        getShoeOnlyIDHere: () => {
+            return shoeId;
         },
         getShoeBySearch: async (query) => {
             const response = await axios.get(BASE_URL + '/product/search', {
@@ -46,29 +47,29 @@ export default function UserProvider(props) {
         // },
 
         // getShoeById: async (shoeId) => {
+        //     console.log(shoeId)
         //     const response = await axios.get(BASE_URL + '/product/' + shoeId);
-        //     console.log("ID " + response.data.shoeCall.description)
-        //     const shoeVariant = response.data.shoeCall
-        //     setShoeVariant(shoeVariant)
-        //     return shoeVariant;
+        //     console.log(response.data) 
+        //     const shoeIdAndAll = response.data.shoeCall[0]
+        //     setShoeId(shoeIdAndAll)
+        //     return shoeId;
         // },
-         getVariantByShoeId: async (shoeId) =>
-         {
-             const response = await axios.get(BASE_URL + '/product/' + shoeId +'/shoeDetails');
+        getVariantByShoeId: async (shoeId) => {
+            // console.log(shoeId)
+            const response = await axios.get(BASE_URL + '/product/' + shoeId + '/shoeDetails');
             //  console.log("HERE " + response.data.variant[0].id +" " + response.data.variant[0].cost)
-             const shoeVariant = response.data.variant;
-             console.log(shoeVariant)
-             setShoeVariant(shoeVariant)
-             return shoeVariant;
-         },
-         getVariantByIdOnly: async (variantid) =>
-         {
-            const response = await axios.get(BASE_URL + '/product/' + variantid +'/variants');
+            const shoeVariant = response.data.variant;
+            // console.log(shoeVariant)
+            setShoeVariant(shoeVariant)
+            return shoeVariant;
+        },
+        getVariantByIdOnly: async (variantid) => {
+            const response = await axios.get(BASE_URL + '/product/' + variantid + '/variants');
             const variantOnly = response.data.onlyVariant;
             setvariantOnly(variantOnly)
             console.log("THIS IS IN THE VARIANTONLY FOR CART TEMP " + variantOnly)
             return variantOnly;
-         }
+        }
     }
 
     return (
