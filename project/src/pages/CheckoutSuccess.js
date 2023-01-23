@@ -15,7 +15,7 @@ export default function CheckoutSuccess() {
         <React.Fragment>
 
             <div className="container d-flex justify-content-center my-3">
-                <h3>Thank you for shopping with us</h3>
+                <h2>Thank you for shopping with us. Please wait...</h2> 
             </div>
         </React.Fragment>
     )

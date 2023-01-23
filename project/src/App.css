@@ -12,3 +12,21 @@
   color: black
 
 }
+
+body {
+ 
+  font-family: 'Quicksand', sans-serif;
+}
+
+
+.titleFont
+{
+
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.navbarColour{
+  background-color: black;
+  color: white;
+}
+

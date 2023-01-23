@@ -24,7 +24,7 @@ export default function VariantList(props) {
     const getShoeVariant = shoeContext.getShoeVariant() || [];
     // const variantByShoeId = shoeContext.getAllShoe() || [];
     // const variantByIdOnly = shoeContext.getVariantOnly() || [];
-    
+
     const userContext = useContext(UserContext);
 
     // console.log({ getShoeVariant })
@@ -37,7 +37,7 @@ export default function VariantList(props) {
     useEffect(() => {
         (async () => {
             await shoeContext.getVariantByShoeId(product_id);
-           
+
 
         })();
     }, []);
@@ -82,20 +82,18 @@ export default function VariantList(props) {
                                     <Card className="card" key={getShoeVariant.id} >
 
                                         {/* <Card.Img className="img-card w-50 h-25" src={shoe.image_url} /> */}
-                                        <Card.Img className="img-card mx-5 mx-md-3 my-5" style={{
-                                            float: "left",
-                                            width: "180px",//phone 250px
-                                            height: "150px",
-                                            objectFit: "cover"
-                                        }} src={getShoeVariant.image_url} />
+                                        
+
+                                        <div style={{ display: "flex", "justifyContent": "center" }}><Card.Img className="card-img-top my-3 my-md-3" style={{ width: "fit-content", maxWidth: "25rem", maxHeight: "10rem" }} src={getShoeVariant.image_url} /></div>
+
                                         {/* { addCart(variant.id)} */}
                                         <Card.Body>
-                                            <Card.Title style={{ color: "green" }}> {getShoeVariant.shoe.model} $ {getShoeVariant.color.color} $ {getShoeVariant.cost} , In stock: {getShoeVariant.stock}  </Card.Title><br />
-
+                                            <Card.Title > <span style={{ fontSize: "1.5rem" }}>   <span className='titleFont' >{getShoeVariant.color.color}</span>  {getShoeVariant.shoe.model} </span> <br /> $ {getShoeVariant.cost / 100} <br /> Stock: {getShoeVariant.stock}  </Card.Title><br />
+                                            {/*  */}
                                             {
                                                 userContext.checkIfAuthenticated() ? ( //cart/1/add
                                                     <div>
-                                                        <Button className="btn btn-primary mt-3 ml-3" as={Link} onClick={() => addCart(getShoeVariant.id)} >add cart</Button>
+                                                        <Button className="btn btn-primary mt-3 ml-3" as={Link} onClick={() => addCart(getShoeVariant.id)} >Add cart</Button>
 
                                                     </div>
 

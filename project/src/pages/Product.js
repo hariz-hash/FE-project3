@@ -58,9 +58,11 @@ export default function Product(props) {
                 <Card className="card m-4" style={{ width: "100", height :"250px" }}>
                     {/* <Card.Img className="card-img-top m-3" style={{ width: "15rem" }} src={image} /> */}
                     <Card.Body style={{ background: "black", display: "flex", alignItems: "center", justifyContent: "center", color: "white", flexDirection: "column" }}>
-                        <Card.Title >DASHoes</Card.Title>
-                        <Card.Text>
-                            Welcome to DASHoes !
+                        <Card.Title>  <span style={{ color: "orange", fontSize: "2rem"}}> <i>DASH</i></span>OES</Card.Title>
+                        <Card.Text style={{textAlign: "center", fontSize:"1.2rem"}}>
+                           
+                            <br/>
+                             A home for the <span style={{ color: "orange"}}>runners</span>. A place to satisfy your <span style={{ color: "orange"}}>need for speed</span>!
                         </Card.Text>
                         {/* <Button className="login-button mt-3" variant="primary" as={Link} to={`/product/${props.shoe.id}/shoeDetails`}>See more</Button> */}
                     </Card.Body>
@@ -68,22 +70,22 @@ export default function Product(props) {
             </div>
             <div className="container-fluid background">
                 <h1 className='m-4'>Search a shoe</h1>
-                <Form.Group className='m-4'>
+                <Form.Group className='m-4 titleFont'>
                     <Form.Label>Name</Form.Label>
                     <Form.Control type="text" placeholder="Search by name" name="model" value={formFields.model} onChange={updateFormFields}>
                     </Form.Control>
                 </Form.Group>
-                <Form.Group className='m-4'>
+                <Form.Group className='m-4 titleFont'>
                     <Form.Label>Shoe Type</Form.Label>
                     <Form.Control type="text" placeholder="Search by description" name="shoeType" value={formFields.shoeType} onChange={updateFormFields}>
                     </Form.Control>
                 </Form.Group>
-                <Form.Group className='m-4'>
+                <Form.Group className='m-4 titleFont'>
                     <Form.Label>Description</Form.Label>
                     <Form.Control type="text" placeholder="Search by description" name="description" value={formFields.description} onChange={updateFormFields}>
                     </Form.Control>
                 </Form.Group>
-                <Form.Group className='m-4'>
+                <Form.Group className='m-4 titleFont'>
 
                     <div class="d-flex justify-content-evenly">
                         <input type="radio" value="1" name="gender_id" onChange={updateFormFields} /> Male
@@ -99,15 +101,8 @@ export default function Product(props) {
 
             <div className="tabs">
                 <div className="container-fluid">
-                <h1 className='mx-4 my-2'>Choose a shoe</h1>
-{/* <div class="container">
-  <div class="row row-cols-3">
-    <div class="col">Column</div>
-    <div class="col">Column</div>
-    <div class="col">Column</div>
-    <div class="col">Column</div>
-  </div>
-</div> */}
+                <h1 className='mx-4 my-2 '>Choose a shoe</h1>
+
                     {shoe.length ? (
                     <div class="row row-cols-md-3">{
                         shoe.map((shoe) => {

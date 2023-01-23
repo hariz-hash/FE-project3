@@ -12,25 +12,18 @@ export default function ProductCard(props) {
     const gender = props.shoe.gender.gender
     const brand = props.shoe.brand.brand
     const materials = props.materials
-    // img {
-    // float: left;
-    // width: 100px;
-    // height: 100px;
-    // object - fit: cover;
-    // // }
-
-    // width:  100px;
-    // height: 100px;
+    // style={{
+    //     float: "left",
+    //     width: "250px",//phone 250px
+    //     height: "150px",
+    //     objectFit: "cover"
+    // }}
+    // mx-5 mx-md-3 my-5
     return (<>
         <Card className="card ">
-            <Card.Img className="card-img-top mx-5 mx-md-3 my-5" style={{
-                float: "left",
-                width: "180px",//phone 250px
-                height: "150px",
-                objectFit: "cover"
-            }} src={image} />
+            <div style={{ display:"flex", "justifyContent":"center"}}><Card.Img className="card-img-top my-3 my-md-3" style={{width: "fit-content", maxWidth:"25rem", maxHeight:"10rem"}}  src={image} /></div>
             <Card.Body>
-                <Card.Title>{model} {shoeType} {gender} ({brand})</Card.Title>
+                <Card.Title className="titleFont" style={{fontSize : "1.2rem"}}>{model} {shoeType} {gender} ({brand})</Card.Title>
                 <Card.Text className="overflow-auto" style={{ height: "100px"}}> {description}</Card.Text> <br />
                 <Button className="login-button mt-3" variant="primary" as={Link} to={`/product/${props.shoe.id}/shoeDetails`}>See more</Button>
             </Card.Body>

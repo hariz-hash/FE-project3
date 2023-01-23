@@ -25,17 +25,17 @@ export default function Menu() {
   }
 
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" className="p-3">
+    <Navbar collapseOnSelect expand="lg"  variant="dark" className="p-3 navbarColour">
       <Container>
         <ToastContainer />
-        <Navbar.Brand href="/">DASHoes</Navbar.Brand>
+        <Navbar.Brand href="/"><span style={{ color: "orange", fontSize: "2rem"}}> <i>DASH</i></span>OES</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           {
             userContext.checkIfAuthenticated() ? (
               <Nav>
                 <Nav className="me-auto p-2">
-                  <Link className="text-decoration-none text-white p-2 m-2" to="/">
+                  <Link className="text-decoration-none text-white p-2 m-2 " to="/">
                     Gallery
                   </Link>
                   <Link className="text-decoration-none text-white p-2 m-2" to="/cart">

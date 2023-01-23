@@ -78,21 +78,16 @@ export default function CartItem(props) {
 
 
         <Card className="card" key={getAllCartItems.id} >
-           
 
-                <Card.Img className="img-card mx-5 mx-md-3 my-5" src={getAllCartItems.variant?.image_url} style={{
-                    float: "left",
-                    width: "180px",//phone 250px
-                    height: "150px",
-                    objectFit: "cover"
-                }} />
 
-                {/* <Card.Title style={{ color: "green" }}> {getAllCartItems.variant?.shoe?.model} &nbsp; {getAllCartItems.variant?.shoe?.shoe_type} : {getAllCartItems.variant?.size?.size}, <br /> price {getAllCartItems.variant?.cost
+            <div style={{ display: "flex", "justifyContent": "center" }}><Card.Img className="card-img-top my-3 my-md-3" style={{ width: "fit-content", maxWidth: "25rem", maxHeight: "10rem" }} src={getAllCartItems.variant?.image_url} /></div>
+
+            {/* <Card.Title style={{ color: "green" }}> {getAllCartItems.variant?.shoe?.model} &nbsp; {getAllCartItems.variant?.shoe?.shoe_type} : {getAllCartItems.variant?.size?.size}, <br /> price {getAllCartItems.variant?.cost
                 }  </Card.Title> */}
-                
-                <Card.Title style={{ color: "green" }}> Quantity: {getAllCartItems.quantity} , {getAllCartItems.variant?.shoe?.model}, {getAllCartItems.variant?.color?.color}, $ {(getAllCartItems.variant?.cost)/100 * getAllCartItems.quantity}
+            <Card.Body>
+                <Card.Title>   <span style={{ fontSize: "1.5rem" }}> {getAllCartItems.variant?.color?.color} {getAllCartItems.variant?.shoe?.model}</span> <br /> <span className='titleFont'>${(getAllCartItems.variant?.cost) / 100 * getAllCartItems.quantity}</span> <br /> Quantity: {getAllCartItems.quantity}  <br />
                 </Card.Title>
-                <Card.Body>
+
                 <Form.Label>Edit Quantity:</Form.Label>
                 <Form.Control
                     className="form-control form-control-sm"
