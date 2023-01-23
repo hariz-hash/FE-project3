@@ -6,7 +6,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import "bootstrap/dist/css/bootstrap.min.css";
 import Login from "./pages/Login";
-import Menu from './components/navigationbar';
+import Menu from './components/Navigationbar';
 import Products from './pages/Product';
 import Cart from './pages/Cart';
 import Order from './pages/Order';

@@ -12,13 +12,7 @@ export default function ProductCard(props) {
     const gender = props.shoe.gender.gender
     const brand = props.shoe.brand.brand
     const materials = props.materials
-    // style={{
-    //     float: "left",
-    //     width: "250px",//phone 250px
-    //     height: "150px",
-    //     objectFit: "cover"
-    // }}
-    // mx-5 mx-md-3 my-5
+   
     return (<>
         <Card className="card ">
             <div style={{ display:"flex", "justifyContent":"center"}}><Card.Img className="card-img-top my-3 my-md-3" style={{width: "fit-content", maxWidth:"25rem", maxHeight:"10rem"}}  src={image} /></div>

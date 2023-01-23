@@ -14,10 +14,6 @@ export default function UserProvider(props) {
     const [getCart, setGetCart] = useState() || []
     const userContext = {
 
-        // getAllCart() {
-        //     return getCart;
-        // },
-
         checkIfAuthenticated: () => {
             if (JSON.parse(localStorage.getItem('accessToken')) && JSON.parse(localStorage.getItem('refreshToken'))) {
                 return true;

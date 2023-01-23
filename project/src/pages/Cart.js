@@ -11,8 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 export default function Cart(props) {
     const userContext = useContext(UserContext);
     let navigate = useNavigate();
-    // const variantId = props.cartItem.variant_id;
-    // const getAllCartItems = userContext.getAllCart() || [];
+
 
 
     const showToastMessageSuccess = (message) => {
@@ -25,7 +24,6 @@ export default function Cart(props) {
     const { variant_id } = useParams();
     const [update, setUpdate] = useState(false);
     let [refresh, setRefresh] = useState(false);
-    // const [quantity, setQuantity] = useState(props.cartItem.quantity);
     const [error, setError] = useState(false);
     const [getAllCartItems, setGetAllCartItems] = useState(null)
     const [quantityFromDb, setQuantityFromDb] = useState('')
@@ -49,28 +47,12 @@ export default function Cart(props) {
         refresh ? setRefresh(false) : setRefresh(true)
     }
 
-    // async function updateCartItem(varid, quantity) {
-    //     // alert('yes' + varid + "========" + quantity)
-    //     const variantid = varid
-    //     let data = await userContext.updateCartItem(varid, quantity)
 
-    //     if (data.state = true) {
-    //         alert("Quantity Updated")
-    //     }
-    //     else if (data.state = false) {
-    //         alert("Item reach it's limit Updated")
-
-    //     }
-    // }
 
     async function handleCheckout() {
-        // alert('yes' + varid + "========" + quantity)
-        // const variantid = varid
-        // await userContext.updateCartItem(varid,quantity)
+      
         const checkout = await userContext.checkout(getAllCartItems);
-        // navigate(checkout.stripe_url)
         window.location.href = checkout.stripe_url
-
 
     }
 
@@ -78,14 +60,11 @@ export default function Cart(props) {
     return (
         <>
 
-
             <ToastContainer />
-
             <div className="container-fluid">
                 <div style={{ width: "100", display: "flex", justifyContent: "center", marginTop: "20px", marginBottom: "20px" }}>
                     <h1> Your Cart</h1>
                 </div>
-
 
                 {getAllCartItems?.length > 0 ? (
                     <div>

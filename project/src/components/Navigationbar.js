@@ -9,9 +9,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function Menu() {
-  // const userContext = userContext(UserContext);
   const userContext = useContext(UserContext);
-  // console.log(typeof userContext)
 
   const showToastMessageLogOut = () => {
     toast.success('Log out !', {
@@ -76,6 +74,5 @@ export default function Menu() {
 
       </Container>
     </Navbar>
-    // <h1> IN the menu as well with navbar here</h1>
   )
 }

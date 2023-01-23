@@ -22,17 +22,11 @@ export default function VariantList(props) {
     // console.log(product_id)
     const shoeContext = useContext(ShoeContext);
     const getShoeVariant = shoeContext.getShoeVariant() || [];
-    // const variantByShoeId = shoeContext.getAllShoe() || [];
-    // const variantByIdOnly = shoeContext.getVariantOnly() || [];
+   
 
     const userContext = useContext(UserContext);
 
-    // console.log({ getShoeVariant })
-    // // const variant = shoeContext.getAllVariant() || [];
-    // const shoeVariant = shoeContext.getShoeVariant() || [];
-
-    // const [shoe, setShoe] = useState({});
-
+   
     // //USE EFFECT
     useEffect(() => {
         (async () => {
@@ -42,14 +36,7 @@ export default function VariantList(props) {
         })();
     }, []);
 
-    // useEffect(() => {
-    //     (async () => {
-    //         await shoeContext.getShoeById(product_id);
-
-    //     })();
-    // }, []);
-
-    // console.log(shoeonlyIdCall)
+    
 
 
     async function addCart(varid) {
@@ -80,8 +67,6 @@ export default function VariantList(props) {
                                 <div class="col gy-3">
 
                                     <Card className="card" key={getShoeVariant.id} >
-
-                                        {/* <Card.Img className="img-card w-50 h-25" src={shoe.image_url} /> */}
                                         
 
                                         <div style={{ display: "flex", "justifyContent": "center" }}><Card.Img className="card-img-top my-3 my-md-3" style={{ width: "fit-content", maxWidth: "25rem", maxHeight: "10rem" }} src={getShoeVariant.image_url} /></div>
@@ -99,13 +84,11 @@ export default function VariantList(props) {
 
                                                 ) : (
                                                     <Button className="btn btn-primary mt-3 ml-3" as={Link} >Login to add cart</Button>
-                                                    // <Button className="btn btn-primary mt-3 ml-3" as={Link} >add cart</Button>
 
                                                 )
                                             }
 
 
-                                            {/* <Button className="btn btn-primary mt-3 ml-3" as={Link} to={`/product/${shoe.id}/shoeDetails`}>View Collection</Button> */}
 
                                         </Card.Body>
                                     </Card> </div>

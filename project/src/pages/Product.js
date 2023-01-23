@@ -18,16 +18,9 @@ export default function Product(props) {
         model: '',
         shoeType: '',
         description: '',
-        // brand_id:'0',
         gender_id: '0',
-        // materials: '0'
     })
-    // useEffect(() => {
-    //     (async () => {
-    //         const searchOptions = await shoeContext.getSearchOptions();
-    //          setSearchOptions(searchOptions);
-    //     })();
-    // }, []);
+  
     useEffect(() => {
         (async () => {
             await shoeContext.getShoeBySearch(search);
@@ -64,7 +57,6 @@ export default function Product(props) {
                             <br/>
                              A home for the <span style={{ color: "orange"}}>runners</span>. A place to satisfy your <span style={{ color: "orange"}}>need for speed</span>!
                         </Card.Text>
-                        {/* <Button className="login-button mt-3" variant="primary" as={Link} to={`/product/${props.shoe.id}/shoeDetails`}>See more</Button> */}
                     </Card.Body>
                 </Card>
             </div>
@@ -93,8 +85,6 @@ export default function Product(props) {
                         <input type="radio" value="0" name="gender_id" onChange={updateFormFields} /> Both
                     </div>
                     <Button className="btn mt-3 ml-3" onClick={searchShoes}>Search</Button>
-
-                    {/* <Dropdown options={options} onChange={this._onSelect} value={defaultOption} placeholder="Select an option" />; */}
                 </Form.Group>
 
             </div>

@@ -39,27 +39,12 @@ export default function UserProvider(props) {
             setShoeSearch(shoeSearch)
             return shoeSearch;
         },
-        // getSearchOptions: async () => {
-        //     const response = await axios.get(BASE_URL + '/product/search_options');
-        //     console.log("Search options " + response.data.options)
-        //     const searchOptions = response.data.options;
-        //     return searchOptions;
-        // },
 
-        // getShoeById: async (shoeId) => {
-        //     console.log(shoeId)
-        //     const response = await axios.get(BASE_URL + '/product/' + shoeId);
-        //     console.log(response.data) 
-        //     const shoeIdAndAll = response.data.shoeCall[0]
-        //     setShoeId(shoeIdAndAll)
-        //     return shoeId;
-        // },
         getVariantByShoeId: async (shoeId) => {
             // console.log(shoeId)
             const response = await axios.get(BASE_URL + '/product/' + shoeId + '/shoeDetails');
             //  console.log("HERE " + response.data.variant[0].id +" " + response.data.variant[0].cost)
             const shoeVariant = response.data.variant;
-            // console.log(shoeVariant)
             setShoeVariant(shoeVariant)
             return shoeVariant;
         },
