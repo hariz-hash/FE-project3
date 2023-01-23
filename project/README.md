@@ -33,8 +33,11 @@ Logical Schema
 
 ####  Sitemap
 
+Backend Sitemap
 ![backend](readme/Backend.PNG)
 
+Backend Sitemap
+![backend](readme/feSiteMap.PNG)
 ####  Wireframes
 
 
