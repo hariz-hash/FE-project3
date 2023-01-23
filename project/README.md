@@ -56,8 +56,18 @@ Front End Wire Frame
 ###  Design Decisions
 
 ####  Color scheme
-The colour choosen
+The colour choosen:
+
+Primary color: White 
+Secondary color: Black
+Tertiary color: Orange & Red
+
+This color schemes are choosen to grab the attention of the customer. The white colour is to help increases white spaces to reflect the notion of luxury product. 
+Black is to enhance on the simplicity. Orange is used only on hover button to reflect the logo colours. Red is a warning colour for item removal button.
+
 ####  Fonts
+Ubuntu: It is use for headers of a products.
+Quicksand : Takes up the majority of the text due it's spacious pattern so as to ease the view.
 
 ##  Features
 
