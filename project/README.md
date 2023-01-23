@@ -130,9 +130,6 @@ Quicksand : Takes up the majority of the text due it's spacious pattern so as to
 | [GoogleFont](https://fonts.google.com/) | For font display |
 
 ##  Testing
-Test case 
-
-##  Testing
 | Test Case No. | Test Case Description | Test Steps | Expected Results
 | ------------ | -------------------- |-------------------- |-------------------- |
 |1| Loading of Website| Go to the website| Website will load. Web page will load the gallery with the search form and the list of product
