@@ -123,7 +123,7 @@ export default function UserProvider(props) {
             if (!cartItems || !cartItems.length) {
                 return false
             }
-
+            console.log("TEST")
             const response = await axios.get(API_URL + '/checkout', {
                 headers: {
                     Authorization: `Bearer ${JSON.parse(localStorage.getItem('accessToken'))}`

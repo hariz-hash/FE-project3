@@ -22,7 +22,8 @@ Create an amazing website application to sell sport shoe brands that consists of
 ###  Structure and Skeleton
 
 ####  Database
-image of erd diagram
+
+![ERD Diagram](readme/DASHSHOESERD.png)
 
 Entity-Relationship Diagram (ERD) 
 
