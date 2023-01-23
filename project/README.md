@@ -44,6 +44,15 @@ Back End Wire Frame
 ![sitemapBE](readme/wireframe.png)
 
 Front End Wire Frame
+![sitemapFE](readme/wireframe1.PNG)
+![sitemapFE](readme/wireframe2.PNG)
+![sitemapFE](readme/wireframe3.PNG)
+![sitemapFE](readme/wireframe4.PNG)
+![sitemapFE](readme/wireframe5.PNG)
+
+
+
+
 ###  Design Decisions
 
 ####  Color scheme
