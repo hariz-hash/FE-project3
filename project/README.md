@@ -39,8 +39,11 @@ Backend Sitemap
 Backend Sitemap
 ![backend](readme/feSiteMap.PNG)
 ####  Wireframes
+Back End Wire Frame
 
+![sitemapBE](readme/wireframe.png)
 
+Front End Wire Frame
 ###  Design Decisions
 
 ####  Color scheme
