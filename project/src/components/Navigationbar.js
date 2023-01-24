@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-
 import Container from 'react-bootstrap/Container';
 import { Link } from 'react-router-dom';
 import Nav from 'react-bootstrap/Nav';
@@ -7,6 +6,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import UserContext from '../contexts/UserContext';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 
 export default function Menu() {
   const userContext = useContext(UserContext);
