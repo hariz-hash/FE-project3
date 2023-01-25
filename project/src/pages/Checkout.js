@@ -23,6 +23,10 @@ export default function Checkout() {
         if (stripeData){
             sessionIdObj = {sessionId: stripeData.sessionId };
             publishableKey = stripeData.publishableKey
+            console.log("session id obj " + sessionIdObj.sessionId + " " )
+            console.log(" ----------------------------------")
+
+            console.log("This is publishable Key " + publishableKey )
         }
 
         const stripe = await loadStripe(publishableKey);
