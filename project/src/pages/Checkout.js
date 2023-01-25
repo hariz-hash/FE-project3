@@ -19,7 +19,7 @@ export default function Checkout() {
             navigateTo('/')
             return;
         }
-
+        console.log(stripeData)
         if (stripeData){
             sessionIdObj = {sessionId: stripeData.sessionId };
             publishableKey = stripeData.publishableKey
