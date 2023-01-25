@@ -11,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 export default function Cart(props) {
     const userContext = useContext(UserContext);
     let navigate = useNavigate();
+    const navigateTo = useNavigate();
 
 
 
@@ -51,9 +52,10 @@ export default function Cart(props) {
 
     async function handleCheckout() {
       
-        const checkout = await userContext.checkout(getAllCartItems);
-        window.location.href = checkout.stripe_url
-
+        //  await userContext.checkout(getAllCartItems);
+        // window.location.href = checkout.stripe_url
+        // publish key session id
+        navigateTo('/checkout')
     }
 
 

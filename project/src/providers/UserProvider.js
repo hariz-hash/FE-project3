@@ -119,9 +119,10 @@ export default function UserProvider(props) {
 
             return response
         },
-        checkout: async (getAllCartItems) => {
-            const cartItems = getAllCartItems;
-
+        checkout: async () => {
+            const cartItems = await userContext.getCart();
+            // checkout: async (getAllCartItems) => {
+            //     const cartItems = getAllCartItems;
             if (!cartItems || !cartItems.length) {
                 return false
             }

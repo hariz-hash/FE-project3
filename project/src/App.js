@@ -18,6 +18,7 @@ import UserProvider from './providers/UserProvider';
 import ShoesProvider from './providers/ShoesProvider';
 import CheckoutSuccess from './pages/CheckoutSuccess';
 import CheckoutError from './pages/CheckoutError';
+import Checkout from './pages/Checkout';
 import './App.css';
 
 function App() {
@@ -33,7 +34,6 @@ function App() {
           <Routes>
 
             <Route path='/' element={<ShoesProvider><Products /></ShoesProvider>} />
-
             <Route path='/cart' element={<ShoesProvider><Cart /></ShoesProvider>} />
             <Route path='/order' element={<Order />} />
             <Route path='/login' element={<Login />} />
@@ -42,6 +42,10 @@ function App() {
             <Route path='/product/:product_id/shoeDetails' element={<ShoesProvider><VariantList /></ShoesProvider>} />
             <Route path='/checkout/success' element={<UserProvider><CheckoutSuccess /></UserProvider>} />
             <Route path='/checkout/error' element={<UserProvider><CheckoutError /></UserProvider>} />
+            <Route path='/checkout/error' element={<UserProvider><CheckoutError /></UserProvider>} />
+            <Route path='/checkout' element={<UserProvider><Checkout /></UserProvider>}/>
+
+
 
             <Route path='*' element={<Error />} />
           </Routes>
