@@ -142,9 +142,10 @@ export default function UserProvider(props) {
                 return true
             }
             else {
+                console.log(response.data)
+
                 return false
             }
-            console.log(response.data)
         },
         orders: async () => {
             const response = await axios.get(API_URL + '/order', {
