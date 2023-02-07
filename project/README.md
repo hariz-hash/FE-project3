@@ -10,7 +10,7 @@ password: Mikey
 Backend:
 email: tester@gmail.com
 password: tester
-email
+
 ## Summary
 Dashshoes is  an e-commerce web applications for the sport enthusiast. User of the this website will be able to browse a collection of sport shoes based on the type of shoes like for running, cross trainer and etc. User of this website will be able to search whichever brand they prefer as well. User will be able to choose a range of colour based on a specific sport shoes.
 
